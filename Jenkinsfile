@@ -42,5 +42,14 @@ pipeline {
                 sh 'terraform apply --auto-approve'                
             }
         }
+        
+        stage('Destroy the Infrastructure') {
+            steps{
+                timeout(time:5, unit:'DAYS'){
+                    input message:'Do you want to terminate?'
+                }
+                sh 'terraform destroy --auto-approve'              
+            }
+        }
     }
 }    
