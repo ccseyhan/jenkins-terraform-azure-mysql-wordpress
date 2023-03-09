@@ -10,13 +10,20 @@ terraform {
     storage_account_name = "ccseyhan"
     container_name = "terraform-backend"
     key = "terraform.tfstate"
+    use_msi              = true
+    subscription_id ="134eac38-c5cf-45f6-aa75-5807ff920f63"
+    tenant_id = "1a93b615-8d62-418a-ac28-22501cf1f978"
   }
 }
+
 provider "azurerm" {
   features {
-    
   }
+  use_msi              = true
+  subscription_id ="134eac38-c5cf-45f6-aa75-5807ff920f63"
+  tenant_id = "1a93b615-8d62-418a-ac28-22501cf1f978"
 }
+
 
 resource "azurerm_resource_group" "rg" {
   name     = "example-resources"
